@@ -1,0 +1,51 @@
+#include <stdio.h>
+#define SIZE 10
+void main(){
+	int num,i,j;
+	char fil='A';
+	int jugador[SIZE][SIZE],ordenador[SIZE][SIZE];
+	printf("************************BATTLESHIP**************************\n");
+	printf("1.- Fácil\n");
+	printf("2.- Medio\n");
+	printf("3.- Difícil\n");
+	printf("************************************************************\n");
+	printf("Bienvenido al juego de hundir la flota. Escoge la dificultad:\n");
+	scanf("%d",&num);
+	for (i=1;i<=3;i++){//validación de 3 intentos máximo
+		if (num<1 || num>3){//condiciones para volver a pedir datos
+		printf("Selecciona un número que aparezca en las opciones, tienes 3 intentos, este es el %dº:",i);
+		scanf("%d",&num);
+	}
+	}
+	switch(num){//selección de dificultad
+	case 1:
+		printf("Bien recluta, ¡ahora a demostrar lo que sabes!\n");
+		break;
+	case 2:
+		printf("Bien marinero, ¡a ver de lo que eres capaz!\n");
+		break;
+	case 3:
+		printf("¡Estás hecho todo un capitán! ¡Muestra lo que vales!\n");
+		break;
+	}
+	printf("  ");//margen del encabezado
+    for (i=0; i<SIZE; i++){ //encabezado
+        printf("| %d", i+1);
+        if (i+1 >= SIZE){
+            printf("|\n");
+        }
+    }
+    printf("%c ",fil);
+    fil++;
+    for (i=0;i<SIZE;i++){//cuadrícula
+        	for (j=0;j<SIZE;j++){
+        		printf("|__");
+        		if (j+1>=SIZE){
+        			printf("|");
+        		}
+        	}
+        	printf("\n");
+        	printf("%c ",fil);
+        	fil++;
+        }
+}
