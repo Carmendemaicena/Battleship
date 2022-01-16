@@ -1,0 +1,169 @@
+function
+   constant
+      SIZE:=10;
+   endconstant
+   var
+      INTEGER num,i:=0,j:=0,fil,col='A',ordenador[SIZE][SIZE];
+      CHAR cab,let;
+   endvar
+   WRITE ("1.- Nivel fácil");
+   WRITE ("2.- Nivel medio");
+   WRITE ("3.- Nivel difícil");
+   WRITE ("4.- Salir");
+   WRITE ("Bienvenido al juego de hundir la flota, escoge el nivel de dificultad");
+   READ num;
+   for i<3 do:
+      if num<1 OR num>4 then:
+         WRITE ("Escribe un numero válido. Tienes 3 intentos.");
+         READ num;
+      i:=i+1;
+   endfor
+   switch (num):
+      case 1: WRITE("Has escogido nivel fácil");
+              for cab<='J' do:
+	         WRITE("|_%c",cab);
+		   if cab>='J' then:
+		      WRITE("|\n");
+		   endif
+               cab:=cab+1;
+	       endfor
+       i:=0;
+	    for i<SIZE do:
+	        for j<SIZE do:
+	           printf("|__");
+	              if j+1>=SIZE:
+	        	printf("|");
+	              endif
+                 j:=j+1;
+	         endfor
+	       WRITE(" %d",i+1);
+	       WRITE("\n");
+             i:=i+1;
+	     endfor
+	     WRITE("\n");
+       i:=0;
+       j:=0;
+       for i<SIZE do:
+          for j<SIZE do:
+             ordenador[i][j]:=0;
+             j:=j+1;
+           endfor
+        i:=i+1;
+
+        ordenador[2][2]:=1;
+	ordenador[3][2]:=1;
+	ordenador[4][2]:=1;
+
+	ordenador[2][4]:=1;
+	ordenador[2][5]:=1;
+
+	ordenador[1][8]:=1;
+	ordenador[2][8]:=1;
+	ordenador[3][8]:=1;
+
+	ordenador[4][4]:=1;
+	ordenador[4][5]:=1;
+	ordenador[4][6]:=1;
+	ordenador[4][7]:=1;
+
+	ordenador[8][2]:=1;
+	ordenador[8][3]:=1;
+	ordenador[8][4]:=1;
+	ordenador[8][5]:=1;
+	ordenador[8][6]:=1;
+        do:
+           WRITE("Escoge la fila a la cual deseas disparar");
+           READ fil;
+        while fil<1 OR fil>SIZE;
+        fil:=fil-1;
+        do:
+           WRITE("Escoge la columna a la cual deseas disparar");
+           READ let;
+        while let<'A' OR let>'J';
+        switch (let):
+        	case 'A': col:=0;
+	    	break;
+	    	case 'B': col:=1;
+	    	break;
+	    	case 'C': col:=2;
+	    	break;
+	    	case 'D': col:=3;
+	    	break;
+	    	case 'E': col:=4;
+	    	break;
+	    	case 'F': col:=5;
+	    	break;
+	    	case 'G': col:=6;
+	    	break;
+	    	case 'H': col:=7;
+	    	break;
+	    	case 'I': col:=8;
+	    	break;
+	    	case 'J': col:=9;
+	    	break;
+          endswitch
+	  i:=0;
+	  j:=0;
+	  cab:='A';
+          if ordenador[fil][col]==1 then:
+             WRITE ("Tocado");
+              for cab<='J' do:
+	         WRITE("|_%c",cab);
+		   if cab>='J' then:
+		      WRITE("|\n");
+		   endif
+               cab:=cab+1;
+	       endfor
+	       for i<SIZE do:
+		  for j<SIZE do:
+                     if ordenador[i][j]==0 then:
+			WRITE ("|__");
+		     endif
+                     else:
+                        if i==fil AND j==col then:
+			  WRITE ("|_x");
+ 			endif
+			else:
+			  WRITE ("|_█");
+		      if j+1>=SIZE then:
+			 WRITE ("|");
+		      endif
+                    j:=j+1;
+		    endfor
+	         WRITE(" %d",i+1);
+	         WRITE("\n");
+                 i:=i+1;
+	         endfor
+	    else:
+		WRITE("Fallado");
+              for cab<='J' do:
+	         WRITE("|_%c",cab);
+		   if cab>='J' then:
+		      WRITE("|\n");
+		   endif
+               cab:=cab+1;
+	       endfor
+            i:=0;
+            j:=0;
+	    for i<SIZE do:
+	        for j<SIZE do:
+	           printf("|__");
+	              if j+1>=SIZE:
+	        	printf("|");
+	              endif
+                 j:=j+1;
+	         endfor
+	       WRITE(" %d",i+1);
+	       WRITE("\n");
+             i:=i+1;
+	     endfor
+	     WRITE("\n");       
+              break;
+      case 2: WRITE("Has escogido nivel medio");
+	      break;	
+      case 3: WRITE("Has escogido nivel difícil");
+              break;
+      case 4: WRITE("Has escogido salir");
+              break;	
+   endswitch
+endfunction
